@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Central de Graduação</title>
+    <link rel="shortcut icon"
+        href="https://www.habbo.com.br/habbo-imaging/badge/b09164s43131s50134s17113s171152f871e57c21d5c38fdf1c29c23d7a3b8.gif"
+        type="image/gif">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(90deg, #5b859e, #81a5b8);
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        ::-webkit-scrollbar {
+            width: 13px;
+            height: 13px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #81a5b8;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: transparent;
+            border-radius: 6px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 10px;
+            margin-bottom: -45px;
+        }
+
+        header img {
+            max-width: 345px;
+            display: block;
+            margin: -1px auto;
+        }
+
+        header h1 {
+            font-size: 24px;
+            margin: 10px 0;
+            text-transform: uppercase;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+            padding: 20px;
+            margin: 20px auto;
+            border-radius: 12px;
+            color: #000;
+            box-sizing: border-box;
+        }
+
+        #texto {
+            font-size: 14px;
+            line-height: 1.95;
+            margin: 20px -10%;
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            border: none;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            background-color: #f9f9f9;
+            color: #333;
+            display: none;
+            text-align: left;
+            width: 120%; 
+            max-width: none;
+            box-sizing: border-box;
+        }
+
+        .copy-btn {
+            font-family: 'Poppins', sans-serif;
+            background-color: #81a5b8;
+            color: white;
+            padding: 4px 7px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            font-size: 9px;
+            margin-left: 5px;
+        }
+
+        .copy-btn:hover {
+            background-color: #5b859e;
+        }
+
+        .descricao {
+            font-family: 'Poppins', sans-serif;
+            font-weight: bold;
+            color: #5b859e;
+            font-size: 11px;
+        }
+
+        .titulo {
+            font-weight: bold;
+            font-size: 16px;
+            color: #000;
+        }
+
+        #creditos {
+            text-align: center;
+            margin-top: 5px;
+            font-size: 12px;
+            color: #fff;
+        }
+
+        #creditos p {
+            margin: 5px 0;
+        }
+
+        #creditos a {
+            color: #fff;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) and (orientation: landscape) {
+            header img {
+                max-width: 70%;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 10px;
+                font-size: 9px;
+            }
+
+            #texto {
+                font-size: 9px;
+                line-height: 1.8;
+                margin: 20px 5%;
+                padding: 10px;
+                width: 90%;
+                max-width: 100%;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            }
+
+            .copy-btn {
+                font-size: 8px;
+            }
+        }
+
+        @media (max-width: 480px) and (orientation: landscape) {
+            header h1 {
+                font-size: 20px;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 10px;
+                font-size: 9px;
+            }
+
+            #texto {
+                font-size: 9px;
+                line-height: 1.6;
+                margin: 15px 5%; 
+                padding: 8px; 
+                width: 90%; 
+                max-width: 100%; 
+                border-radius: 6px;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+                text-align: justify;
+            }
+
+            .copy-btn {
+                font-size: 8px;
+            }
+        }
+
+        #aviso {
+            position: fixed;
+            bottom: 13px;
+            right: 13px;
+            background-color: #f8f8ff;
+            color: #050505;
+            padding: 15px 20px;
+            border-radius: 8px;
+            max-width: 300px;
+            font-size: 14px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            animation: fadeIn 0.5s ease;
+        }
+
+        #aviso button {
+            background: none;
+            border: none;
+            color: rgb(171, 0, 0);
+            font-weight: bold;
+            font-size: 18px;
+            cursor: pointer;
+            padding: 0;
+        }
+
+        #aviso button:hover {
+            color: black;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .bot-link {
+            font-family: 'Poppins', sans-serif;
+            background-color: #81a5b8;
+            color: white;
+            padding: 2px 5px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            font-size: 9px;
+            margin-left: 2px;
+        }
+
+        .bot-link:hover {
+            background-color: darkcyan;
+        }
+
+        .bot-link:active {
+            background-color: darkcyan;
+        }
+
+        .custom-select {
+            position: relative;
+            width: 100%;
+            height: 60px;
+            background-color: #ffffff;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .custom-select select {
+            display: none;
+        }
+
+        .select-items {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            z-index: 1;
+            width: 100%;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: absolute;
+            top: 110%;
+            left: 0;
+            border-radius: 8px;
+        }
+
+        .select-items img {
+            margin-top: -10px;
+        }
+
+        .select-items div {
+            padding: 10px;
+            cursor: pointer;
+            display: flex;
+            filter: grayscale(100%);
+            transition: filter 0.1s ease;
+            margin-top: -2px;
+            padding-left: 25px;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .select-items div:hover {
+            background-color: #d0e3ee;
+            border-radius: 8px;
+            filter: grayscale(0%);
+            color: #81a5b8;
+        }
+
+        .selected {
+            background-color: #fff;
+            padding: 0 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            height: 100%;
+            border-radius: 8px;
+        }
+
+        .desc-aula {
+            font-size: 11px;
+            color: #555;
+            margin-top: 5px;
+            padding-left: 10px;
+            font-style: italic;
+            display: block;
+        }
+
+        input[type="checkbox"] {
+            position: absolute;
+            opacity: 0;
+            z-index: -1;
+        }
+
+        input:checked ~ .spoiler-conteudo {
+            max-height: 100vh;
+            padding: 1em;
+        }
+
+        input:checked ~ .spoiler-label .seta {
+            transform: rotate(180deg);
+        }
+
+        .spoiler {
+            margin: 10px;
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 2px 3px -2px rgba(0, 0, 0, 0.5);
+        }
+
+        .spoiler-label {
+            display: flex;
+            padding: 0.5em;
+            font-weight: bold;
+            cursor: pointer;
+            background: #70b8d4;
+            color: #fff;
+            border-radius: 5px;
+        }
+
+        .spoiler-conteudo {
+            max-height: 0;
+            padding: 0 1em;
+            background: white;
+            transition: all 0.35s;
+        }
+
+        .spoiler-label .seta {
+            transition: transform 0.3s ease;
+            margin-left: auto;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div id="aviso">
+        <span><i class="fa-solid fa-caret-right" style="color: #81a5b8;"></i> Se aprovado, será sua responsabilidade
+            orientá-lo sobre as respostas erradas.<br><br>
+            <i class="fa-solid fa-caret-right" style="color: #81a5b8;"></i> Para conferir se o policial já recebeu ou
+            não a graduação, <a href="https://www.policiarcc.com/t31424-efe-lista-de-membros" class="bot-link"
+                target="_blank"><strong>CLIQUE AQUI</strong></a><br><br>
+            <i class="fa-solid fa-caret-right" style="color: #81a5b8;"></i> Caso prefira aplicar a graduação
+            manualmente, <a href="https://www.policiarcc.com/f148-efe-aplicacao-manual" class="bot-link"
+                target="_blank"><strong>CLIQUE AQUI</strong></a><br><br>
+            <i class="fa-solid fa-circle-exclamation"></i> Em casos de erros, contate ofranco6830 ou ,youiz.
+        </span>
+        <button id="f-aviso"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <header>
+        <img src="https://i.imgur.com/CQJWLqe_d.webp?maxwidth=760&fidelity=grand" alt="Logo">
+    </header>
+    <div class="container">
+        <div class="custom-select">
+            <div class="selected">
+                <span>Clique aqui, selecione a graduação desejada e boa aplicação!</span> <img
+                    src="https://i.imgur.com/QkxYiUq.png_d.webp?maxwidth=760&fidelity=grand" width="30"
+                    style="margin-left: 10px; align-items: center;">
+            </div>
+            <div class="select-items">
+                <div data-value="GRADB">
+                    <img src="https://i.imgur.com/KFeqvuL_d.webp?maxwidth=760&fidelity=grand" alt="Graduação Básica"
+                        width="30" style="margin-top: 2px;">
+                    Graduação Básica
+                    <span class="desc-aula"><i class="fa-solid fa-arrow-right"></i> Aplicável aos novos membros.</span>
+                </div>
+                <div data-value="GRADA">
+                    <img src="https://i.imgur.com/8eBQ3nV_d.webp?maxwidth=760&fidelity=grand" alt="Graduação Avançada"
+                        width="30" style="margin-top: 2px;">
+                    Graduação Avançada
+                    <span class="desc-aula"><i class="fa-solid fa-arrow-right"></i> Aplicável aos novos tutores.</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="texto"></div>
+    </div>
+
+    <footer id="creditos">
+        <p><i class="fas fa-code"></i> Desenvolvido por <strong><a
+                    href="https://system.policercc.com.br/membros/%2Cyouiz" target="_blank">,youiz</a></strong></p>
+        <p><i class="fas fa-lightbulb"></i> Idealizado por <strong><a
+                    href="https://system.policercc.com.br/membros/ofranco6830" target="_blank">ofranco6830</a></strong>
+        </p>
+        <p>&copy; Reservam-se os direitos a <strong>Escola de Formação de Executivos</strong>.</p>
+    </footer>
+
+    <script>
+        const scripts = {
+            GRADB: [
+                { tipo: 'titulo', texto: "INTRODUÇÃO" },
+                { tipo: 'texto', texto: "Saudações, professor. Seja bem-vindo à Escola de Formação de Executivos!" },
+                { tipo: 'texto', texto: "Eu sou o(a) graduador(a) responsável pela sua Graduação Básica." },
+                { tipo: 'texto', texto: "Em caso de dúvidas, não hesite em acenar que irei retirar suas dúvidas com maior prazer!" },
+                { tipo: 'descricao', texto: "<span style='color: #f8f8ff; font-size: 0px;'>.</span>" },
+                { tipo: 'texto', texto: "Você possui uma TAG ativa no RCCSystem?" },
+                { tipo: 'descricao', texto: "↳ Caso a resposta seja SIM, prossiga para o envio da mensagem privada; do contrário, vá para o spoiler a seguir." },
+                { tipo: 'spoiler', texto: '<span style="font-size: 14px;">Caso a resposta seja NÃO:</span>  <span class="seta"><i class="fa-solid fa-chevron-down"></i></span>', conteudo: [
+                    { tipo: 'texto', texto: "Para criar uma TAG no system, siga os passos abaixo:" },
+                    { tipo: 'texto', texto: "Acesse sua conta, vá na aba Requerimentos e depois em TAGs." },
+                    { tipo: 'texto', texto: "Crie uma TAG com apenas 3 letras/números do seu nick." },
+                    { tipo: 'texto', texto: "Exemplo: Hiago → [HaO]" },
+                ]},
+                { tipo: 'texto', texto: "Para acessar o conteúdo da graduação básica, acesse o link: bit*ly/efegradu1" },
+                { tipo: 'texto', texto: "(troque o * por  . ). Avise-me quando terminar de ler e envie um balão a cada" },
+                { tipo: 'texto', texto: "05 minutos para não dormir na sala. Boa leitura!" },
+                { tipo: 'descricao', texto: "<span style='color: #f8f8ff; font-size: 0px;'>.</span>" },
+                { tipo: 'texto', texto: "Alguma dúvida?" },
+                { tipo: 'descricao', texto: "↳ Caso a resposta seja NÃO, prossiga." },
+                { tipo: 'descricao', texto: "<span style='color: #f8f8ff; font-size: 0px;'>.</span>" },
+                { tipo: 'titulo', texto: "TESTE TEÓRICO" },
+                { tipo: 'descricao', texto: "↳ Caso haja mais de um professor, solicite o uso do sussurro para envio das respostas." },
+                { tipo: 'texto', texto: "Agora, responderá um questionário para avaliar seu conhecimento sobre o conteúdo" },
+                { tipo: 'texto', texto: "adquirido durante a leitura. Boa sorte!" },
+                { tipo: 'descricao', texto: "↳ Graduador, seja minimamente criterioso para quaisquer respostas incorretas; instrua o professor a responder corretamente." },
+                { tipo: 'descricao', texto: "Caso veja descaso por parte dele, isto é, não leu o conteúdo e respondendo erroneamente várias vezes, reprove-o." },
+                { tipo: 'descricao', texto: "<span style='color: #f8f8ff; font-size: 0px;'>.</span>" },
+                { tipo: 'texto', texto: "1. Qual subfórum estão os scripts de aulas?" },
+                { tipo: 'descricao', texto: "➥ [EFE] Central de Aulas." },
+                { tipo: 'descricao', texto: "<span style='color: #f8f8ff; font-size: 0px;'>.</span>" },
+                { tipo: 'texto', texto: "2. O que deve ser feito antes de iniciar uma aplicação?" },
+                { tipo: 'descricao', texto: "➥ Antes de iniciar a aplicação é sua obrigação confirmar no RCCSystem se o policial está ativo e que não tenha realizado a aula antes ou consultor de aulas." },
+                { tipo: 'descricao', texto: "<span style='color: #f8f8ff; font-size: 0px;'>.</span>" },
+                { tipo: 'texto', texto: "3. O que deve ser feito caso não consiga bater a meta?" },
+                { tipo: 'descricao', texto: "➥ Justificar a meta no formulário." },
+                { tipo: 'descricao', texto: "<span style='color: #f8f8ff; font-size: 0px;'>.</span>" },
+                { tipo: 'texto', texto: "4. Qual prazo para postagem de aulas? E quais os dois locais onde deverão ser postadas?" },
+                { tipo: 'descricao', texto: "➥ 01 hora. No formulário (FÓRUM) e no RCCSystem." },
+                { tipo: 'descricao', texto: "<span style='color: #f8f8ff; font-size: 0px;'>.</span>" },
+                { tipo: 'texto', texto: "5. Qual é a meta mínima semanal?" },
+                { tipo: 'descricao', texto: "➥ A aplicação de, no mínimo, DUAS AULAS semanalmente." },
+                { tipo: 'descricao', texto: "<span style='color: #f8f8ff; font-size: 0px;'>.</span>" },
+                { tipo: 'texto', texto: "6. Quais requisitos para aplicação da Avaliação Periódica do Corpo Executivo (Av-CE)?" },
+                { tipo: 'descricao', texto: "➥ Ser executivo e possuir o Certificado de Formação de Executivos, também deve estar iniciando uma nova carreira e não ter recebido nenhuma das aulas da Escola de Formação de Executivos." },
+                { tipo: 'descricao', texto: "<span style='color: #f8f8ff; font-size: 0px;'>.</span>" },
+                { tipo: 'titulo', texto: "CONCLUSÃO" },
+                { tipo: 'spoiler', texto: 'APROVADO: <span class="seta"><i class="fa-solid fa-chevron-down"></i></span>', conteudo: [
+                    { tipo: 'texto', texto: "Parabéns, você foi aprovado(a) na Graduação Básica e está apto a aplicar aulas!" },
+                    { tipo: 'texto', texto: "Lembre-se que as aulas devem ser realizadas por ordem de aplicação," },
+                    { tipo: 'texto', texto: "seguindo completamente o script." },
+                    { tipo: 'texto', texto: "A inversão de aulas e o pulo de script são crimes graves e passíveis de punições previstas" },
+                    { tipo: 'texto', texto: "no Código Penal Militar." },
+                    { tipo: 'texto', texto: "Sempre olhe suas Mensagens Privadas para se informar sobre mudanças na companhia e" },
+                    { tipo: 'texto', texto: "avisos gerais. Por fim, enviarei uma apostila via Mensagem Privada contendo informações úteis" },
+                    { tipo: 'texto', texto: "quanto à companhia, e iniciativas de atuação, incluindo o link do nosso aplicativo verde e" },
+                    { tipo: 'texto', texto: "canal externo. Sempre olhe suas Mensagens Privadas para se informar sobre" },
+                    { tipo: 'texto', texto: "mudanças na companhia e avisos gerais." },
+                ] },
+                { tipo: 'spoiler', texto: 'REPROVADO: <span class="seta"><i class="fa-solid fa-chevron-down"></i></span>', conteudo: [
+                    { tipo: 'texto', texto: "Infelizmente você foi reprovado na Graduação Básica." },
+                    { tipo: 'texto', texto: "Não se preocupe, não será prejudicado e poderá refazê-la agora mesmo." },
+                    { tipo: 'texto', texto: "Vamos revisar o conteúdo e refazer agora mesmo?" },
+                ] },
+                { tipo: 'descricao', texto: '<span style="color: #000000; font-size: 14px;">POSTAGEM</span>' },
+                { tipo: 'descricao', texto: 'Para postar no formulário, <a href="https://docs.google.com/forms/d/e/1FAIpQLScjMSD56ibHeCLrl7ezni140SJCjSv1nDkC-a0rDeVWcArC3A/viewform" class="bot-link" target="_blank">CLIQUE AQUI</a>' },
+                { tipo: 'descricao', texto: 'Para retificar seu erro, <a href="https://docs.google.com/forms/d/e/1FAIpQLSdW-6EBbJGgbDk6YJtr7xfOXp0UK_LKfWzDVJ_qHJ96fqFaQA/viewform" class="bot-link" target="_blank">CLIQUE AQUI</a>' },
+                { tipo: 'descricao', texto: 'Para postar sua graduação, <a href="https://www.policiarcc.com/h20-efe-requerimentos-de-membros" class="bot-link" target="_blank">CLIQUE AQUI</a>' },
+                { tipo: 'descricao', texto: "<span style='color: #f8f8ff; font-size: 0px;'>.</span>" },
+                { tipo: 'descricao', texto: '<span style="color: #000000; font-size: 14px;">CONFERÊNCIA</span>' },
+                { tipo: 'descricao', texto: 'Para conferir sua postagem, <a href="https://docs.google.com/spreadsheets/d/1TWbKL2P0kk8wIrR0uDxDk47ZYOKOlkCDakFkKD-ruHA/edit?gid=1917395687#gid=1917395687" class="bot-link" target="_blank">CLIQUE AQUI</a>' },
+                { tipo: 'descricao', texto: 'Para conferir sua retificação, <a href="https://docs.google.com/spreadsheets/d/1eSxCL5XHriY9P5LaS8WvVLOiNNyMOqee7O418nZDmv0/edit?gid=1397067655#gid=1397067655" class="bot-link" target="_blank">CLIQUE AQUI</a>' },
+                { tipo: 'descricao', texto: 'Para conferir o histórico de aplicação, <a href="https://drive.google.com/drive/u/2/folders/1lMMDVkykSWNu5xCZir0nu3o2MN9__Jsx" class="bot-link" target="_blank">CLIQUE AQUI</a>' },
+            ],
+            GRADA: [
+                { tipo: 'titulo', texto: "INTRODUÇÃO" },
+                { tipo: 'texto', texto: "Saudações, mentor. Parabéns por sua promoção e seja bem-vindo(a) à" },
+                { tipo: 'texto', texto: "Graduação Avançada." },
+                { tipo: 'descricao', texto: "<span style='color: #f8f8ff; font-size: 0px;'>.</span>" },
+                { tipo: 'texto', texto: "Para acessar o conteúdo da Graduação," },
+                { tipo: 'texto', texto: "Acesse em seu navegador o link: bit*ly/efegradu2" },
+                { tipo: 'texto', texto: "(troque o * por  . ). Avise-me quando terminar de ler." },
+                { tipo: 'descricao', texto: "↳ Aguarde a confirmação da leitura." },
+                { tipo: 'descricao', texto: "<span style='color: #f8f8ff; font-size: 0px;'>.</span>" },
+                { tipo: 'texto', texto: "Alguma dúvida?" },
+                { tipo: 'descricao', texto: "<span style='color: #f8f8ff; font-size: 0px;'>.</span>" },
+                { tipo: 'titulo', texto: "CONCLUSÃO" },
+                { tipo: 'texto', texto: "Parabéns, você foi aprovado na Graduação Avançada e está" },
+                { tipo: 'texto', texto: "apto a aplicar atividades como mentor. Lembre-se de ler o tópico instrucional" },
+                { tipo: 'texto', texto: "da sua função, ele pode ajudá-lo caso possua dúvidas." },
+                { tipo: 'descricao', texto: "<span style='color: #f8f8ff; font-size: 0px;'>.</span>" },
+                { tipo: 'descricao', texto: '<span style="color: #000000; font-size: 14px;">POSTAGEM</span>' },
+                { tipo: 'descricao', texto: 'Para postar no formulário, <a href="https://docs.google.com/forms/d/e/1FAIpQLScjMSD56ibHeCLrl7ezni140SJCjSv1nDkC-a0rDeVWcArC3A/viewform" class="bot-link" target="_blank">CLIQUE AQUI</a>' },
+                { tipo: 'descricao', texto: 'Para retificar seu erro, <a href="https://docs.google.com/forms/d/e/1FAIpQLSdW-6EBbJGgbDk6YJtr7xfOXp0UK_LKfWzDVJ_qHJ96fqFaQA/viewform" class="bot-link" target="_blank">CLIQUE AQUI</a>' },
+                { tipo: 'descricao', texto: 'Para postar sua graduação, <a href="https://www.policiarcc.com/h20-efe-requerimentos-de-membros" class="bot-link" target="_blank">CLIQUE AQUI</a>' },
+                { tipo: 'descricao', texto: "<span style='color: #f8f8ff; font-size: 0px;'>.</span>" },
+                { tipo: 'descricao', texto: '<span style="color: #000000; font-size: 14px;">CONFERÊNCIA</span>' },
+                { tipo: 'descricao', texto: 'Para conferir sua postagem, <a href="https://docs.google.com/spreadsheets/d/1TWbKL2P0kk8wIrR0uDxDk47ZYOKOlkCDakFkKD-ruHA/edit?gid=1917395687#gid=1917395687" class="bot-link" target="_blank">CLIQUE AQUI</a>' },
+                { tipo: 'descricao', texto: 'Para conferir sua retificação, <a href="https://docs.google.com/spreadsheets/d/1eSxCL5XHriY9P5LaS8WvVLOiNNyMOqee7O418nZDmv0/edit?gid=1397067655#gid=1397067655" class="bot-link" target="_blank">CLIQUE AQUI</a>' },
+                { tipo: 'descricao', texto: 'Para conferir o histórico de aplicação, <a href="https://drive.google.com/drive/u/2/folders/1lMMDVkykSWNu5xCZir0nu3o2MN9__Jsx" class="bot-link" target="_blank">CLIQUE AQUI</a>' },
+            ],
+        };
+
+        const customSelect = document.querySelector('.custom-select');
+        const selected = customSelect.querySelector('.selected');
+        const selectItems = customSelect.querySelector('.select-items');
+
+        selectItems.style.display = 'none';
+
+        selected.addEventListener('click', () => {
+            const isOpen = selectItems.style.display === 'block';
+            selectItems.style.display = isOpen ? 'none' : 'block';
+        });
+
+        selectItems.addEventListener('click', (e) => {
+            const option = e.target.closest('div[data-value]');
+            if (option) {
+                const text = option.textContent.trim().split('\n')[0];
+                const value = option.getAttribute('data-value');
+
+                selected.innerHTML = `
+                <img src="${option.querySelector('img').src}" alt="${text}" width="35" style="margin-top: 3px;">
+                <span style="font-weight: bold; color: #81a5b8;">${text}</span>
+            `;
+
+                selectItems.style.display = 'none';
+
+                const texto = scripts[value].map(mapearCampoNaTela).join('');
+                document.getElementById('texto').innerHTML = texto;
+                document.getElementById('texto').style.display = "block";
+            }
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!customSelect.contains(e.target)) {
+                selectItems.style.display = 'none';
+            }
+        });
+
+        function mapearCampoNaTela(item, index) {
+            if (item.tipo === 'titulo') {
+                return `
+                <div class="titulo">
+                    ${item.texto}
+                    <button class="copy-btn" onclick="copiarTexto('${item.texto}', this)">Copiar</button>
+                </div>
+            `;
+            }
+            if (item.tipo === 'descricao') {
+                return `
+                <div class="descricao">
+                    ${item.texto}
+                </div>
+            `;
+            }
+            if (item.tipo === 'texto') {
+                return `
+                <div class="texto">
+                    ${item.texto}
+                    <button class="copy-btn" onclick="copiarTexto('${item.texto}', this)">Copiar</button>
+                </div>
+            `;
+            }
+            if (item.tipo === 'spoiler') {
+                return `
+                <div class="spoiler">
+                    <input type="checkbox" id="tab-${index}">
+                    <label class="spoiler-label" for="tab-${index}">${item.texto}</label>
+                    <div class="spoiler-conteudo">
+                        ${item.conteudo.map(mapearCampoNaTela).join('')}
+                    </div>
+                </div>
+                `
+            }
+            return '';
+        }
+
+        function copiarTexto(texto, botao) {
+            const tempInput = document.createElement("input");
+            tempInput.value = texto;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
+            botao.textContent = "Copiado!";
+            botao.style.backgroundColor = "darkcyan";
+            setTimeout(() => {
+                botao.textContent = "Copiar";
+                botao.style.backgroundColor = "";
+            }, 10000);
+        }
+
+        window.onload = function () {
+            const floatingMessage = document.getElementById("aviso");
+            const closeButton = document.getElementById("f-aviso");
+
+            closeButton.addEventListener("click", function () {
+                floatingMessage.style.display = "none";
+            });
+
+            setTimeout(() => {
+                floatingMessage.style.display = "none";
+            }, 20000);
+        };
+
+    </script>
+</body>
+</html>
